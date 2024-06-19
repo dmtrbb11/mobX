@@ -5,6 +5,7 @@ import { CountryInfo } from "../api/apiService";
 class CountryStore {
   maxSuggestions: number = 0;
   countryName: string = "";
+  showSuggestions: boolean = false;
   countries: CountryInfo[] = [];
   filteredCountries: CountryInfo[] = [];
   selectedCountry: CountryInfo | null = null;
@@ -14,6 +15,9 @@ class CountryStore {
     makeAutoObservable(this);
   }
 
+  setShowSuggestions(showSuggestions: boolean) {
+    this.showSuggestions = showSuggestions;
+  }
   setCountryName(countryName: string) {
     this.countryName = countryName.toLowerCase();
     this.fetchCountries();

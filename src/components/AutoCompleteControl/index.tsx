@@ -9,15 +9,14 @@ interface Props {
 }
 
 const CountryInput: React.FC<Props> = observer(({ store }) => {
-  const [showSuggestions, setShowSuggestions] = React.useState(false);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     store.setCountryName(event.target.value);
-    setShowSuggestions(true);
+    store.setShowSuggestions(true);
   };
 
   const handleSuggestionClick = (country: CountryInfo) => {
     store.selectCountry(country);
-    setShowSuggestions(false);
+    store.setShowSuggestions(false);
   };
 
   const renderSuggestions = () => {
@@ -51,7 +50,7 @@ const CountryInput: React.FC<Props> = observer(({ store }) => {
         placeholder="Введите название страны"
         value={store.countryName}
         onChange={handleInputChange}
-        onBlur={() => setShowSuggestions(false)}
+        onBlur={() => store.setShowSuggestions(false)}
       />
       {store.countries && renderSuggestions()}
     </div>
