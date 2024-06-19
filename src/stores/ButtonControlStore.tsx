@@ -8,7 +8,6 @@ class ControlStore {
   }
   setInputValue = (newValue: string) => {
     this.inputValue = newValue;
-    console.log("go", this.inputValue);
   };
 
   clearHandler = () => {
@@ -19,13 +18,17 @@ class ControlStore {
     this.inputValue = "Hello world!";
   };
   alertHandler = () => {
-    alert(this.inputValue);
+    if (this.inputValue.trim().length === 0) {
+      alert("Введите значение");
+    } else {
+      alert(this.inputValue);
+    }
   };
 
   isNumberHandler = () => {
-    const value: number = parseInt(this.inputValue);
-    if (!isNaN(value)) {
-      alert(value);
+    const inputValue = this.inputValue.trim();
+    if (/^\d+$/.test(inputValue)) {
+      alert(parseInt(inputValue));
     } else {
       alert("Введите числовое значение");
     }
